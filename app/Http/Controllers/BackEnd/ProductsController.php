@@ -18,10 +18,10 @@ class ProductsController extends Controller
             ->orderBy('products.created_at','asc');
 
         if ($filter_type == 'category') {
-            $products->where('ic_categories.slug', $filter);
+            $products->where('categories.slug', $filter);
         }
         if ($filter_type == 'available') {
-            $products->where('ic_products.active', $filter);
+            $products->where('products.active', $filter);
         }
 
         $products = $products->get();
@@ -48,7 +48,7 @@ class ProductsController extends Controller
     public function productEdit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         //$db_ext = DB::connection('OnlineStoreDB');
-        $product = DB::table('ic_products')
+        $product = DB::table('products')
             ->join('ic_categories','ic_products.category_id','=','ic_categories.id')
             ->select('ic_products.*','ic_categories.*', DB::raw('ic_products.name as ProName, ic_products.id as ProID'))
             ->where('ic_products.id',$id)
