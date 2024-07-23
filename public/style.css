@@ -1,0 +1,29 @@
+body{
+    font-family: 'STC', sans-serif !important;
+    font-size: 18px;
+}
+html{
+    font-family: 'STC', sans-serif !important;
+    font-size: 18px;
+
+}
+h1,h2,h3,h4,h5,h6,p,span,label,b,a,button,input{
+    font-family: 'STC', sans-serif !important;
+    font-size: 18px;
+
+}
+
+.loa {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('page-loader.gif') 50% 50% no-repeat ;
+}
+
+@font-face {
+    font-family: "STC";
+    src: url("fonts/STC-Regular.ttf");
+}
