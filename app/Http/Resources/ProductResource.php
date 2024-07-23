@@ -31,6 +31,7 @@ class ProductResource extends JsonResource
             'images' => ImageResource::collection($this->whenLoaded('images')),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'variations_title' => $this->variations_title,
+            'category_id' => $this->category_id,
             'quantity' => $this->whenPivotLoaded('shopping_cart', function () {
                 return $this->pivot->quantity;
             }),

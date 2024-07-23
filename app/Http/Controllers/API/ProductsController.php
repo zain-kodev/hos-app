@@ -56,7 +56,7 @@ class ProductsController extends BaseController
 //            })->paginate(10);
 
         } else {
-            $products = $data->paginate(10);
+            $products = $data->with('variations_title.variations')->paginate(100);
         }
 
             return $this->sendResponse([
