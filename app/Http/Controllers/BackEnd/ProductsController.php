@@ -84,7 +84,7 @@ class ProductsController extends Controller
         }
 
         //$db_ext = DB::connection('OnlineStoreDB');
-        $product = DB::table('ic_products')
+        $product = DB::table('products')
             ->where('id',$request->ProID)
             ->update([
                 'name' => $request->name,
