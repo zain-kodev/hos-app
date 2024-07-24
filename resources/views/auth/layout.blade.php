@@ -10,7 +10,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>2Lum Tickets | Event Management & Marketing</title>
+    <title>فواح استور</title>
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/logo.png') }}">

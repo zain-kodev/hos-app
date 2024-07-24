@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/products/{filter_type?}/{filter?}', [ProductsController::class, 'products'])
+Route::post('/products/{filter_type?}/{filter?}', [ProductsController::class, 'products'])
     ->where(['filter_type' => 'category|tag|search'])
     ->name('products');
-Route::get('/productsSearch', [ProductsController::class, 'proSearch']);
-Route::get('/product/{slug}', [ProductsController::class, 'product'])->name('product');
+Route::post('/productsSearch', [ProductsController::class, 'proSearch']);
+Route::post('/product/{slug}', [ProductsController::class, 'product'])->name('product');
 Route::post('projectDetails', [ProductsController::class, 'projectDetails']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
