@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr" class="fontawesome-i2svg-active fontawesome-i2svg-complete dark">
+<html lang="en-US" dir="ltr" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
 
 <head>
     <meta charset="utf-8">
