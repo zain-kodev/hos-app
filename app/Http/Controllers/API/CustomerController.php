@@ -51,7 +51,7 @@ class CustomerController extends BaseController
                 ],'');
             }
         }else{
-            response()->json([
+           return response()->json([
                 'success' => false
             ], 200);
         }
@@ -87,7 +87,7 @@ class CustomerController extends BaseController
 
         //return response()->json(['errors' => $request->all()], 200);
         $products = $request->input('products'); // This is an array
-        //dd($products);
+        //dd($request->all());
         // Convert array to Collection
         //$coll = collect($data);
         try {
@@ -112,12 +112,11 @@ class CustomerController extends BaseController
         try {
             $pros = [];
             foreach ($products as $item) {
-                //$decodedItems = json_decode($item, true); // Use true to get an associative array
+                $decodedItems = json_decode($item, true); // Use true to get an associative array
+                //dd($decodedItems);
+                    $product_id = $decodedItems['product_id'];
+                    $quantity = $decodedItems['quantity'];
 
-
-
-                    $product_id = $item['product_id'];
-                    $quantity = $item['quantity'];
                     $prod = Product::find($product_id);
                     $pros[] = [
                         'name' => $prod->name,
@@ -127,7 +126,7 @@ class CustomerController extends BaseController
                     ];
 
             }
-            //dd($pros);
+
             $lastRecord = Order::latest()->first();
             $order = new Order();
             $user = User::find($request->uid);
@@ -147,7 +146,13 @@ class CustomerController extends BaseController
 
             $order->sub_total = $request->total;
             $order->total = $request->total;
-            $order->order = $lastRecord->order + 1;
+            if (!isset($lastRecord)){
+                $order->order = 4000;
+            }else{
+                $order->order = $lastRecord->order + 1;
+            }
+
+
 
             $order->save();
 
