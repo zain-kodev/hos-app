@@ -109,7 +109,7 @@ class CustomerController extends BaseController
 
         //dd($request->all());
         //DB::beginTransaction();
-        try {
+
             $pros = [];
             foreach ($products as $item) {
                 $decodedItems = json_decode($item, true); // Use true to get an associative array
@@ -157,12 +157,18 @@ class CustomerController extends BaseController
             $order->save();
 
             //Mail::to($user)->send(new NewOrderEmail($order));
+        if ($order){
             return $this->sendResponse([
                 'order'=>$order
             ],'');
-        }catch (\Exception $e){
-            return $this->sendError($e,[]);
+        }else{
+            return $this->sendError('',[]);
         }
+            
+
+//        }catch (\Exception $e){
+//            return $this->sendError($e,[]);
+//        }
 
 
     }
