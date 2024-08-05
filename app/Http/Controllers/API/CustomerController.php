@@ -112,10 +112,10 @@ class CustomerController extends BaseController
 
             $pros = [];
             foreach ($products as $item) {
-                $decodedItems = json_decode($item, true); // Use true to get an associative array
+                //$decodedItems = json_decode($item, true); // Use true to get an associative array
                 //dd($decodedItems);
-                    $product_id = $decodedItems['product_id'];
-                    $quantity = $decodedItems['quantity'];
+                    $product_id = $item['product_id'];
+                    $quantity = $item['quantity'];
 
                     $prod = Product::find($product_id);
                     $pros[] = [
@@ -164,7 +164,7 @@ class CustomerController extends BaseController
         }else{
             return $this->sendError('',[]);
         }
-            
+
 
 //        }catch (\Exception $e){
 //            return $this->sendError($e,[]);
