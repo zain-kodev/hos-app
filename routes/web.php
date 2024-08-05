@@ -3,6 +3,7 @@
 use App\Http\Controllers\BackEndAdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -45,9 +46,26 @@ Route::get('redirect', function () {
     }
 
 });
-Route::get('/AdminDashboard', function () {
-    return view('AdminDashboard.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/AdminDashboard', function ($filter_type = null, $filter = null) {
+    $o = DB::table('orders')
+        ->join('users','users.id','=','orders.user_id')
+        ->select('orders.*','users.*', DB::raw('ic_orders.id as OID, ic_orders.created_at as oca'))
+        ->orderBy('orders.created_at','desc');
+    $cou = DB::table('orders')
+        ->join('users','users.id','=','orders.user_id')
+        ->select('orders.*','users.*', DB::raw('ic_orders.id as OID, ic_orders.created_at as oca'))
+        ->orderBy('orders.created_at','desc')->get();
+
+    if ($filter_type == 'type') {
+        $o->where('orders.state', $filter);
+    }
+
+    $o = $o->get();
+   // dd($o);
+    $users = DB::table('users')->get();
+    $products = DB::table('products')->get();
+    return view('AdminDashboard.dashboard',compact('o','users','products','cou'));
+})->middleware(['auth'])->name('AdminDashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

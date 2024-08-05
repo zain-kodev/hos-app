@@ -70,60 +70,65 @@
             <div class="table-responsive scrollbar">
                 <table class="table table-striped overflow-hidden">
                     <thead>
-                    <tr class="btn-reveal-trigger">
-                        <th scope="col">الاسم</th>
-                        <th scope="col">الجوال</th>
-                        <th scope="col">البريد</th>
-                        <th scope="col">اسم الكيان</th>
-                        <th scope="col">الرقم الضريبي</th>
-                        <th scope="col">المنطقة</th>
-                        <th scope="col">نوع المؤسسة</th>
-                        <th scope="col">تاريخ الطلب</th>
-                        <th scope="col">الحالة</th>
-                        <th class="text-end" scope="col">الاجراء</th>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم العميل</th>
+                        <th> البريد</th>
+                        <th>التاريخ</th>
+                        <th>رقم الطلب</th>
+                        <th> المجموع</th>
+                        <th> المدينة</th>
+                        <th>خيارات</th>
+
+
                     </tr>
                     </thead>
                     <tbody>
-{{--                    @foreach($data as $item)--}}
-{{--                        <tr class="btn-reveal-trigger">--}}
-{{--                            <td>{{ $item->first_name }} {{ $item->last_name }}</td>--}}
-{{--                            <td>{{ $item->phone }}</td>--}}
-{{--                            <td>{{ $item->email }}</td>--}}
-{{--                            <td>{{ $item->org_name }}</td>--}}
-{{--                            <td>{{ $item->org_reg_number }}</td>--}}
-{{--                            <td>{{ $item->region }}</td>--}}
-{{--                            <td>{{ $item->acType }}</td>--}}
-{{--                            <td>{{ $item->join_at }}</td>--}}
-{{--                            <td>--}}
-{{--                                @if($item->active == 0)--}}
-{{--                                    <span class="badge badge rounded-pill d-block p-2 badge-soft-primary">في الانتظار<span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span></span>--}}
-{{--                                @else--}}
-{{--                                    <span class="badge badge rounded-pill d-block p-2 badge-soft-success"> تمت الموافقة<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>--}}
 
-{{--                                @endif--}}
-{{--                            </td>--}}
+                    @foreach($o as $key => $Single)
+                        <tr>
+                            <td style="visibility: hidden">{{$key}}</td>
+                            <td><a href="{{url('orderDetails')}}/{{ $Single->OID }}">{{$Single->name}}</a> </td>
+                            <td>{{ $Single->email }}</td>
+                            <td>{{  \Carbon\Carbon::parse($Single->oca)->format('F d, Y') }}</td>
+                            <td>{{$Single->order}}</td>
+                            <td>{{ number_format($Single->total) }} SAR</td>
+                            <td>{{ $Single->city }} </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>خيارات
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @if('successful' == $Single->state)
+                                            {{--                                        <li>--}}
+                                            {{--                                            <a class="" href="#" target="_blank">موافقة</a>--}}
+                                            {{--                                        </li>--}}
+                                            <li>
+                                                <a class="" href="{{url('orderDetails')}}/{{ $Single->OID }}" target="_blank">تفاصيل الطلب</a>
+                                            </li>
+                                        @endif
 
-{{--                            <td class="text-end">--}}
-{{--                                <div class="dropdown font-sans-serif position-static">--}}
-{{--                                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>--}}
-{{--                                    <div class="dropdown-menu dropdown-menu-end border py-0">--}}
-{{--                                        <div class="bg-white py-2">--}}
-{{--                                            @if($item->active == 0)--}}
-{{--                                            <form action="{{ route('acceptOrg') }}" method="post">--}}
-{{--                                                @csrf--}}
-{{--                                                <input name="orgID" type="hidden" value="{{ $item->id }}">--}}
-{{--                                                <button type="submit" class="dropdown-item" style="font-family: 'Noto Kufi Arabic'">موافقة</button>--}}
-{{--                                            </form>--}}
-{{--                                                <a class="dropdown-item text-danger" href="#!">رفض</a>--}}
-{{--                                            @endif--}}
-{{--                                                <a class="dropdown-item text-danger" href="#!">حذف</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
+                                        @if('complete' == $Single->state)
+                                            <li>
+                                                <a class="" href="{{url('orderDetails')}}/{{ $Single->OID }}" target="_blank">تفاصيل الطلب</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="{{ route('orderDetailsPrint',$Single->OID) }}" target="">عرض الفاتورة</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="{{ url('addOrderToProjects') }}/{{ $Single->OID }}" target="">إضافة للمشاريع</a>
+                                            </li>
+                                        @endif
 
-{{--                    @endforeach--}}
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
+
                     </tbody>
                 </table>
             </div>
