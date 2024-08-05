@@ -139,6 +139,9 @@ class CustomerController extends BaseController
             $order->phone = $request->phone;
             $order->note = $request->note;
             $order->address = $request->address;
+            $order->latitude = $request->latitude;
+            $order->longitude = $request->longitude;
+            $order->delivery_address = $request->delivery_address;
 
             $order->products = $pros;
 
