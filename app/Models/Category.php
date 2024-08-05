@@ -11,16 +11,18 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'img',
 
     ];
     protected $casts = [
         'name' => 'string',
         'slug' => 'string',
+        'img' => 'string',
     ];
     protected $attributes = [
         'active' => 1,
     ];
-    
+
     public function products()
     {
         return $this->hasMany(Product::class);
