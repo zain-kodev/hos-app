@@ -143,7 +143,7 @@ class CustomerController extends BaseController
 
             $order->save();
 
-            Mail::to($user)->send(new NewOrderEmail($order));
+            //Mail::to($user)->send(new NewOrderEmail($order));
             return $this->sendResponse([
                 'order'=>$order
             ],'');
