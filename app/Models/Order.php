@@ -18,6 +18,9 @@ class Order extends Model
         'sub_total',
         'total',
         'state',
+        'latitude',
+        'longitude',
+        'delivery_address',
         'invoice_id',
         'paid',
 
@@ -32,6 +35,9 @@ class Order extends Model
         'total' => 'float',
         'invoice_id' => 'string',
         'paid' => 'string',
+        'latitude' => 'string',
+        'longitude' => 'string',
+        'delivery_address' => 'string',
     ];
     protected $attributes = [
         'products' => "[]",
