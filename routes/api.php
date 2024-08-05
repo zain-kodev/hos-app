@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,11 @@ Route::post('/productsSearch', [ProductsController::class, 'proSearch']);
 Route::post('/product/{slug}', [ProductsController::class, 'product'])->name('product');
 Route::post('projectDetails', [ProductsController::class, 'projectDetails']);
 
+Route::post('login', [CustomerController::class, 'login'])->name('login');
+Route::post('addNewCustomer', [CustomerController::class, 'addNewCustomer'])->name('addNewCustomer');
+Route::post('placeOrder', [CustomerController::class, 'placeOrder'])->name('placeOrder');
+Route::post('customerOrders', [CustomerController::class, 'customerOrders'])->name('customerOrders');
+Route::post('confirmPay', [CustomerController::class, 'confirmPay'])->name('confirmPay');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
