@@ -41,14 +41,19 @@ class CustomerController extends BaseController
             'password' => Hash::make($request->password),
         ]);
 
-        //event(new Registered($user));
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = $request->user();
-            $token = $user->createToken('my-app-token')->plainTextToken;
-            return $this->sendResponse([
-                'user'=>$user,
-                'token'=>$token
-            ],'');
+        if ($user){
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $user = $request->user();
+                $token = $user->createToken('my-app-token')->plainTextToken;
+                return $this->sendResponse([
+                    'user'=>$user,
+                    'token'=>$token
+                ],'');
+            }
+        }else{
+            response()->json([
+                'success' => false
+            ], 200);
         }
 
     }
