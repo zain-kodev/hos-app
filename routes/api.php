@@ -22,6 +22,7 @@ Route::post('/productsSearch', [ProductsController::class, 'proSearch']);
 Route::post('/product/{slug}', [ProductsController::class, 'product'])->name('product');
 Route::post('projectDetails', [ProductsController::class, 'projectDetails']);
 
+Route::post('register', [CustomerController::class, 'register'])->name('register');
 Route::post('login', [CustomerController::class, 'login'])->name('login');
 Route::post('addNewCustomer', [CustomerController::class, 'addNewCustomer'])->name('addNewCustomer');
 Route::post('placeOrder', [CustomerController::class, 'placeOrder'])->name('placeOrder');
