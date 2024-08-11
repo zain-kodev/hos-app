@@ -83,6 +83,45 @@ class CustomerController extends BaseController
         }
     }
 
+
+    public function register(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', Rules\Password::defaults()],
+        ],[
+            'name.required' => 'الاسم مطلوب',
+            'email.unique' => 'الرجاء استخدام لريد الكتروني آخر',
+            'email.required' => 'البريد الالكتروني مطلوب',
+            'password.required' => 'كلمة المرور مطلوبة',
+        ]);
+
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+        return response()->json(
+            [
+                //'token' => $token,
+                'uid' => $user->id,
+                'name' => $user->name,
+                'uphone' => $user->phone,
+                'uemail' => $user->email,
+                'ucity' => $user->city,
+                'message' => '',
+                'success' => true
+            ], 200);
+
+    }
+
     public function placeOrder(Request $request){
 
         //return response()->json(['errors' => $request->all()], 200);

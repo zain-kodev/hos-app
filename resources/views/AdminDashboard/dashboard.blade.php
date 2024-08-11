@@ -4,8 +4,8 @@
     <div class="row g-0">
         <div class="card mb-3">
             <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../assets/img/illustrations/corner-4.png);">
+
             </div>
-            <!--/.bg-holder-->
 
             <div class="card-body position-relative">
                 <div class="row">
@@ -17,8 +17,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
     <div class="row g-3 mb-3">
         <div class="col-sm-6 col-md-4">
             <div class="card overflow-hidden" style="min-width: 12rem">
