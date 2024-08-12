@@ -36,13 +36,13 @@ class ProductsController extends BaseController
 
             $products = $data->whereHas('category', function ($query) use ($filter) {
                 $query->where('slug', $filter);
-            })->paginate(10);
+            })->paginate(100);
 
         } elseif ($filter_type == 'tag') {
 
             $products = $data->whereHas('tags', function ($query) use ($filter) {
                 $query->where('slug', $filter);
-            })->paginate(10);
+            })->paginate(100);
 
         }elseif ($filter_type == 'search'){
 
@@ -50,13 +50,13 @@ class ProductsController extends BaseController
                 ->when($searchQuery, function ($query, $searchQuery) {
                     return $query->where('name', 'like', "%$searchQuery%");
                 })->where('active', 1)
-                ->paginate(10);
+                ->paginate(1-0);
 //            $products = $data->whereHas('tags', function ($query) use ($filter) {
 //                $query->where('slug', $filter);
 //            })->paginate(10);
 
         } else {
-            $products = $data->with('variations_title.variations')->paginate(100);
+            $products = $data->with('variations_title.variations')->random()->paginate(100);
         }
 
             return $this->sendResponse([
