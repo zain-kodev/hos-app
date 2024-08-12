@@ -108,11 +108,12 @@ class CustomerController extends BaseController
         ]);
 
         event(new Registered($user));
+        $token =  $user->createToken('my-app-token')->plainTextToken;
         return response()->json(
             [
-                //'token' => $token,
+                'token' => $token,
                 'uid' => $user->id,
-                'name' => $user->name,
+                'uname' => $user->name,
                 'uphone' => $user->phone,
                 'uemail' => $user->email,
                 'ucity' => $user->city,
