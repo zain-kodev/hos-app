@@ -64,17 +64,17 @@ class CustomerController extends BaseController
             $user = $request->user();
             $token =  $user->createToken('my-app-token')->plainTextToken;
 
-                return response()->json(
-                    [
-                        'token' => $token,
-                        'uid' => $user->id,
-                        'uname' => $user->name,
-                        'upac' => $user->file_code,
-                        'uphone' => $user->phone,
-                        'uemail' => $user->email,
-                        'message' => '',
-                        'success' => true
-                    ], 200);
+            return response()->json(
+                [
+                    'token' => $token,
+                    'uid' => $user->id,
+                    'uname' => $user->name,
+                    'uphone' => $user->phone,
+                    'uemail' => $user->email,
+                    'ucity' => $user->city,
+                    'message' => '',
+                    'success' => true
+                ], 200);
 
             //dd($response);
 
