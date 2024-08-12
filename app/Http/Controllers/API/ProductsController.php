@@ -25,7 +25,7 @@ class ProductsController extends BaseController
 
         $new_products = Product::where('active', 1)->take(3)->orderBy('created_at', 'desc')->get();
 
-        $data = Product::where('active', 1)->random();
+        $data = Product::where('active', 1);
 //        $data = Product::query()
 //            ->when($searchQuery, function ($query, $searchQuery) {
 //                return $query->where('name', 'like', "%$searchQuery%");
@@ -36,7 +36,7 @@ class ProductsController extends BaseController
 
             $products = $data->whereHas('category', function ($query) use ($filter) {
                 $query->where('slug', $filter);
-            })->random()->paginate(100);
+            })->paginate(100);
 
         } elseif ($filter_type == 'tag') {
 
@@ -50,7 +50,6 @@ class ProductsController extends BaseController
                 ->when($searchQuery, function ($query, $searchQuery) {
                     return $query->where('name', 'like', "%$searchQuery%");
                 })->where('active', 1)
-                ->random()
                 ->paginate(1-0);
 //            $products = $data->whereHas('tags', function ($query) use ($filter) {
 //                $query->where('slug', $filter);
