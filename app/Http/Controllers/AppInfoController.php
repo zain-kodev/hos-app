@@ -14,11 +14,13 @@ class AppInfoController extends Controller
         return view('AdminDashboard.online_store.app_info.index',compact('info'));
     }
     public function edit_info(Request $request){
+
+       // dd($request->all());
         $validatedData = Validator::make($request->all(),[
-            'about_us' => 'required|string',
-            'terms_condition' => 'required|string',
-            'privacy_policy' => 'required|string',
-            'shiping_return' => 'required|string',
+            'about_us' => 'required',
+            'terms_condition' => 'required',
+            'privacy_policy' => 'required',
+            'shiping_return' => 'required',
 
         ]);
 
@@ -30,7 +32,7 @@ class AppInfoController extends Controller
 
 
         DB::table('app_info')
-            ->where('id',$request->id)
+            ->where('id',$request->ProID)
             ->update([
                 'about_us' => $request->about_us,
                 'terms_condition' => $request->terms_condition,
