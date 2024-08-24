@@ -63,7 +63,7 @@
                                             <div class="dropdown-menu dropdown-menu-end border py-0">
                                                 <div class="bg-white py-2">
                                                     <a class="dropdown-item text-info" href="#!" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}" >تعديل</a>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>

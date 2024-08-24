@@ -29,7 +29,7 @@ class AppInfoController extends Controller
         }
 
 
-        DB::table('ic_app_info')
+        DB::table('app_info')
             ->where('id',$request->id)
             ->update([
                 'about_us' => $request->about_us,
