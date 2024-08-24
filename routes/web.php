@@ -47,6 +47,7 @@ Route::get('redirect', function () {
 
 });
 Route::get('/AdminDashboard', function ($filter_type = null, $filter = null) {
+
     $o = DB::table('orders')
         ->join('users','users.id','=','orders.user_id')
         ->select('orders.*','users.*', DB::raw('ic_orders.id as OID, ic_orders.created_at as oca'))

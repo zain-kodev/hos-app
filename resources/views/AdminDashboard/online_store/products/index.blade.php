@@ -109,17 +109,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="p-4 pb-0">
-                                                            <div class="mb-3">
+                                                            <div class="mb-3 min-vh-50">
                                                                 <label class="col-form-label" for="message-text">وصف المنتج:</label>
-                                                                <textarea class="form-control" rows="5" name="description_min" >{{ $item->description_min }}</textarea>
+                                                                <textarea class="form-control tinymce d-none" rows="5" name="description_min" >{{ $item->description_min }}</textarea>
                                                             </div>
 
                                                         </div>
 
                                                         <div class="p-4 pb-0">
-                                                            <div class="mb-3">
+                                                            <div class="mb-3 min-vh-50">
                                                                 <label class="col-form-label" for="message-text">تفاصيل المنتج:</label>
-                                                                <textarea class="form-control" rows="7" name="description_max" >{{ $item->description_max }}</textarea>
+                                                                <textarea class="form-control tinymce d-none" rows="7" name="description_max" >{{ $item->description_max }}</textarea>
                                                             </div>
 
                                                         </div>
