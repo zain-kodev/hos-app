@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppInfoController;
 use App\Http\Controllers\BackEnd\InvoiceController;
 use App\Http\Controllers\BackEnd\OrdersController;
 use App\Http\Controllers\BackEnd\ProductsController;
@@ -14,9 +15,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('productEdit/{id}', [ProductsController::class, 'productEdit']);
     Route::post('PostProductEdit', [ProductsController::class, 'productEditPost'])->name('PostProductEdit');
+
     Route::post('uploadTempProductMainImage', [ProductsController::class,'uploadTempProductMainImage'])->name('uploadTempProductMainImage');
 
 
+    Route::get('AppInfo', [AppInfoController::class, 'AppInfo']);
+    Route::post('editAppInfo', [AppInfoController::class, 'edit_info'])->name('editAppInfo');
 
 
     Route::get('newOrders/{filter_type?}/{filter?}', [OrdersController::class, 'newOrders'])
