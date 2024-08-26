@@ -16,19 +16,19 @@ class AppInfoController extends Controller
     public function edit_info(Request $request){
 
        // dd($request->all());
-        $validatedData = Validator::make($request->all(),[
-            'about_us' => 'required',
-            'terms_condition' => 'required',
-            'privacy_policy' => 'required',
-            'shiping_return' => 'required',
-
-        ]);
-
-        if ($validatedData->fails()) {
-            return redirect()->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+//        $validatedData = Validator::make($request->all(),[
+//            'about_us' => 'required',
+//            'terms_condition' => 'required',
+//            'privacy_policy' => 'required',
+//            'shiping_return' => 'required',
+//
+//        ]);
+//
+//        if ($validatedData->fails()) {
+//            return redirect()->back()
+//                ->withErrors($validatedData)
+//                ->withInput();
+//        }
 
 
         DB::table('app_info')

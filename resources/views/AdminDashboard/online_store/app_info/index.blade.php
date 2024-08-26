@@ -44,18 +44,10 @@
                             <tbody>
                             @foreach($info as $item)
                                 <tr class="btn-reveal-trigger">
-                                    <td>{{$item->about_us}}</td>
-                                    <td>{{$item->terms_condition}}</td>
-                                    <td>{{ $item->privacy_policy }} </td>
-                                    <td>{{ $item->shiping_return }} </td>
-                                    {{--                                        <td>--}}
-                                    {{--                                            @if($item->active == 0)--}}
-                                    {{--                                                <span class="badge badge rounded-pill d-block p-2 badge-soft-primary">في الانتظار<span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span></span>--}}
-                                    {{--                                            @else--}}
-                                    {{--                                                <span class="badge badge rounded-pill d-block p-2 badge-soft-success"> تمت الموافقة<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>--}}
-
-                                    {{--                                            @endif--}}
-                                    {{--                                        </td>--}}
+                                    <td>{!! $item->about_us !!}</td>
+                                    <td>{!! $item->terms_condition !!}</td>
+                                    <td>{!! $item->privacy_policy  !!} </td>
+                                    <td>{!! $item->shiping_return  !!} </td>
 
                                     <td class="text-end">
                                         <div class="dropdown font-sans-serif position-static">
