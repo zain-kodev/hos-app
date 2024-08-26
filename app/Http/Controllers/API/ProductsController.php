@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends BaseController
 {
@@ -59,11 +60,17 @@ class ProductsController extends BaseController
             $products = $data->with('variations_title.variations')->paginate(100);
         }
 
+        $info = DB::table('app_info')->first();
+
             return $this->sendResponse([
                 'products' => ProductResource::collection($products),
                 'newProducts' => ProductResource::collection($new_products),
                 'categories' => CategoryResource::collection($categories),
                 'tags' => TagResource::collection($tags),
+                'about' => $info->about_us,
+                'terms' => $info->terms_condition,
+                'privacy' => $info->privacy_policy,
+                'shipping' => $info->shiping_return,
             ], '');
 
     }
