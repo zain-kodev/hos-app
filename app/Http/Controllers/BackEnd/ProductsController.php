@@ -49,15 +49,15 @@ class ProductsController extends Controller
     {
         //$db_ext = DB::connection('OnlineStoreDB');
         $product = DB::table('products')
-            ->join('ic_categories','ic_products.category_id','=','ic_categories.id')
-            ->select('ic_products.*','ic_categories.*', DB::raw('ic_products.name as ProName, ic_products.id as ProID'))
-            ->where('ic_products.id',$id)
-            ->orderBy('ic_products.created_at','asc')
+            ->join('categories','products.category_id','=','categories.id')
+            ->select('products.*','categories.*', DB::raw('ic_products.name as ProName, ic_products.id as ProID'))
+            ->where('products.id',$id)
+            ->orderBy('products.created_at','asc')
             ->first();
-        $categories = DB::table('ic_categories')->get();
-        $images = DB::table('ic_images')->where('product_id',$product->ProID)->get();
+        $categories = DB::table('categories')->get();
+        $images = DB::table('images')->where('product_id',$product->ProID)->get();
         //dd($images);
-        return view('online_store.products.product_edit',compact('product','categories','images'));
+        return view('AdminDashboard.online_store.products.product_edit',compact('product','categories','images'));
 
     }
 
@@ -123,6 +123,37 @@ class ProductsController extends Controller
                 'FileName' => 'products_images/'.$ran.'_'.$filename
             ]);
             return $filename;
+        }
+
+        return '';
+
+    }
+
+
+
+    public function editTemp(Request $request,$id)
+    {
+        //dd($id);
+        $this->validate($request, [
+            'file' => 'required|mimes:jpg,jpeg,JPG,JPEG,PNG,png|max:6048',
+        ],
+            $messsages = array(
+                'file.mimes'=>'خطأ في صيغة الملف',
+            )
+        );
+        if($request->hasFile('file')) {
+            $tms = date('Y-m-d');
+            $usr_id = auth()->user()->id;
+            $ran = mt_rand(10000, 99999);
+            $file = $request->file('file');
+            $filename = uniqid().'_'.$tms.'.'.$file->getClientOriginalExtension();
+            $file->storeAs('products_images/'.$usr_id.'/',$ran.'_'.$filename,'public_uploads');
+            $f = '/products_images/'.$usr_id.'/'.$ran.'_'.$filename;
+            DB::table('products')->where('id',$id)->update([
+                'img' => $f,
+                'img_ball' => $f,
+            ]);
+            return '';
         }
 
         return '';

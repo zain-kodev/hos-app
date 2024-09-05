@@ -30,6 +30,8 @@
     <script src="{{ asset('my/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('my/sweetalert-dev.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('my/sweetalert.css') }}">
+    <link href="{{ asset('vendors/dropzone/dropzone.min.css') }}" rel="stylesheet" />
+
     <!-- ===============================================-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,6 +210,7 @@
     });
 
 </script>
+<script src="{{ asset('vendors/dropzone/dropzone.min.js') }}"></script>
 <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
 <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>

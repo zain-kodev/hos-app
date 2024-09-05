@@ -1,35 +1,25 @@
-@extends('index')
+@extends('AdminDashboard.layouts.layout')
+
 @section('content')
-    <style>
-        .photo-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .buttons {
-            position: absolute;
-            bottom: 80%;
-            left: 80%;
-
-        }
-
-        .photo-container:hover .buttons {
-            opacity: 1;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    <div class="">
-        <section class="content-header">
-            <div class="">
-
-                <ol class="breadcrumb">
-                    <li><a href="{{ url('MainPort') }}"><i class="fa fa-dashboard"></i> المتجر الالكتروني</a></li>
-                    <li class="active"> تعديل بيانات الباقة </li>
-
-                </ol>
+    <div class="row g-0">
+        <div class="card mb-3">
+            <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url('{{ asset('assets/img/illustrations/corner-4.png') }}');">
             </div>
-        </section>
+            <!--/.bg-holder-->
+
+            <div class="card-body position-relative">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>المنتجات</h3>
+                        <p class="mb-0">تعديل المنتجات</p>
+                        <a class="btn btn-link btn-sm ps-0 mt-2" href="#" target="_blank"> تعديل المنتجات <span class="fas fa-chevron-left ms-1 fs--2"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -39,216 +29,92 @@
             </ul>
         </div>
     @endif
-    <form class="form-horizontal" method="POST" action="{{ route('PostProductEdit') }}">
-        @csrf
-        <input type="hidden" name="ProID" value="{{ $product->ProID }}">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title"> تعديل البيانات</h3>
+    <div class="row g-0">
+        <div class="col-lg-12 col-xl-12 pe-lg-2 mb-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row flex-between-end">
+                        <div class="col-auto col-lg align-self-center">
+                            <h5 class="mb-0" data-anchor="data-anchor">تعديل المنتج </h5>
+                        </div>
 
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
                     </div>
-                    <!-- /.box-tools -->
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-12 table-responsive" >
-                            <div class="form-group">
-                                <label for="State" class="col-sm-2 control-label">اسم المنتج</label>
-                                <div class="col-sm-8">
-                                    <input  class="form-control" name="name" value="{{ $product->ProName }}">
-                                </div>
+                <div class="card-body pt-0">
+                    <form action="{{ route('PostProductEdit') }}" method="post" id="my-awesome-dropzone">
+                        @csrf
+                        <input type="hidden" name="ProID" value="{{ $product->ProID }}">
+                        <div class="p-4 pb-0">
+                            <div class="col-12 mb-3">
+                                <label class="form-label" for="event-name">اسم المنتج</label>
+                                <input class="form-control" name="name" type="text" placeholder="عنوان الفعالية" value="{{ $product->ProName }}"/>
                             </div>
-                            <div class="form-group">
-                                <label for="State" class="col-sm-2 control-label">القسم</label>
-                                <div class="col-sm-8">
-                                    <select name="category_id" class="form-control select2" style="width: 100%">
-                                        @foreach($categories as $item)
-                                            <option value="{{ $item->id }}"  @if($item->id == $product->category_id) selected="selected" @endif>{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
+                            <div class="col-12 mb-3">
+                                <label class="form-label" for="event-name">عبارة مختصرة</label>
+                                <input class="form-control" name="sentence" type="text"  value="{{ $product->sentence }}"/>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label class="form-label" for="event-name">التصنيف </label>
+                                <select name="category_id" class="form-select" >
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"  @if($category->id == $product->category_id) selected="selected" @endif>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label" for="event-name">سعر المنتج</label>
+                                <input class="form-control" name="price" type="number"  value="{{ $product->price }}"/>
+                            </div>
+                        </div>
+                        <div class="p-4 pb-0">
+                            <div class="mb-3 min-vh-50">
+                                <label class="col-form-label" for="message-text">وصف المنتج:</label>
+                                <textarea class="form-control tinymce d-none" rows="5" name="description_min" >{{ $product->description_min }}</textarea>
                             </div>
 
                         </div>
-                        <!-- /.col -->
-                    </div>
-                    <div class="box-footer">
-                    </div>
-
-                </div>
-
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </div>
-        <div class="col-md-6">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title"> تعديل البيانات</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                    <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-12 table-responsive" >
-                            <div class="form-group">
-                                <label for="State" class="col-sm-2 control-label">السعر</label>
-                                <div class="col-sm-8">
-                                    <input  class="form-control" type="number" name="price" value="{{ $product->price }}">
-                                </div>
+                        <div class="p-4 pb-0">
+                            <div class="mb-3 min-vh-50">
+                                <label class="col-form-label" for="message-text">تفاصيل المنتج:</label>
+                                <textarea class="form-control tinymce d-none" rows="7" name="description_max" >{{ $product->description_max }}</textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="State" class="col-sm-2 control-label">الاسم المختصر</label>
-                                <div class="col-sm-8">
-                                    <input  class="form-control" name="sentence" value="{{ $product->sentence }}">
-                                </div>
-                            </div>
-{{--                            <div class="form-group">--}}
-{{--                                <label for="State" class="col-sm-2 control-label">الرابط</label>--}}
-{{--                                <div class="col-sm-8">--}}
-{{--                                    <input  class="form-control" name="slug" value="{{ $product->slug }}">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
 
                         </div>
-                        <!-- /.col -->
-                    </div>
-                    <div class="box-footer">
-                    </div>
+                        <div class="p-4 pb-0">
+                            <div class="mb-3 min-vh-50 row">
 
-                </div>
-
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </div>
-    </div>
-
-        <div class="col-md-12" >
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">الوصف المختصر</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                    <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                <textarea class="textarea" name="description_min" placeholder="Place some text here" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                    {{ $product->description_min }}
-                </textarea>
-
-                </div>
-                <div class="box-footer">
-
-                </div>
-            </div>
-        </div>
-    <div class="col-md-12" >
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">تفاصيل المنتج</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                    <textarea class="textarea" name="description_max" placeholder="Place some text here" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-                    {{ $product->description_max }}
-                </textarea>
-
-            </div>
-            <div class="box-footer">
-                <button class="btn btn-default btn-block btn-warning">حفظ البيانات</button>
-            </div>
-        </div>
-    </div>
-    </form>
-    <div class="col-md-12" >
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title"> صور المنتج</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-                <div class='row margin-bottom'>
-                    <div class='col-sm-6'>
-                        <div class="photo-container">
-                            @if(\App\Helpers\MyAws::GetLocalUrl($product->img) == 'Unknown' )
-                                <img class='img-responsive' src="{{ asset('dist/img/placeholder.png') }}" alt='Photo'>
-                                <div class="buttons">
-                                    <button class="update-button btn-info">ارفق الصورة</button>
-                                </div>
-                            @else
-                                <img class='img-responsive' src="{{ \App\Helpers\MyAws::GetLocalUrl($product->img) }}" alt='Photo'>
-                                <div class="buttons">
-                                    <button class="update-button btn-info">تحديث الصورة </button>
-                                </div>
-                            @endif
-
-                        </div>
-                    </div><!-- /.col -->
-                    <div class='col-sm-6'>
-                        <div class='row'>
-                            @foreach($images as $img)
-                                <div class='col-sm-6'>
-                                    <div class="photo-container">
-                                        @if(\App\Helpers\MyAws::GetLocalUrl($img->img) == 'Unknown' )
-                                            <img class='img-responsive' src="{{ asset('dist/img/placeholder.png') }}" alt='Photo'>
-                                            <div class="buttons">
-                                                <button class="update-button btn-info">ارفق الصورة</button>
+                                <div class="col-lg-6 col-xl-6 pe-lg-2 mb-3">
+                                    <label class="col-form-label" for="message-text">صورة المنتج:</label>
+                                    <div class="dropzone dropzone-single p-0" data-dropzone="data-dropzone" data-options='{"url":"{{ route('editTemp',$product->ProID ) }}","maxFiles":1,"dictDefaultMessage":"Choose or Drop a file here"}'>
+                                        <div class="fallback">
+                                            <input type="file" name="file" />
+                                        </div>
+                                        <div class="dz-preview dz-preview-single">
+                                            <div class="dz-preview-cover dz-complete"><img class="dz-preview-img" src="{{ asset('assets/img/generic/image-file-2.png') }}" alt="..." data-dz-thumbnail="" /><a class="dz-remove text-danger" href="#!" data-dz-remove="data-dz-remove"><span class="fas fa-times"></span></a>
+                                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
                                             </div>
-                                        @else
-                                            <img class='img-responsive' src="{{ \App\Helpers\MyAws::GetLocalUrl($img->img) }}" alt='Photo'>
-                                            <div class="buttons">
-                                                <button class="update-button btn-info">تحديث الصورة</button>
-                                            </div>
-                                        @endif
+                                        </div>
+                                        <div class="dz-message" data-dz-message="data-dz-message">
+                                            <div class="dz-message-text"><img class="me-2" src="{{ asset('assets/img/icons/cloud-upload.svg') }}" width="25" alt="" />اضغط هنا لتحميل الصورة</div>
+                                        </div>
                                     </div>
-                                </div><!-- /.col -->
-                            @endforeach
-                        </div><!-- /.row -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div>
-            <div class="box-footer">
+                                </div>
+                                <div class="col-lg-6 col-xl-6 pe-lg-2 mb-3">
+                                    <img class="dz-preview-img" src="{{ asset($product->img) }}" />
+                                </div>
 
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">ارسال </button>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
-    <script>
-        $(function () {
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            //CKEDITOR.replace('editor1');
-            //bootstrap WYSIHTML5 - text editor
-            $(".textarea").wysihtml5();
-        });
-    </script>
+
+
 @endsection

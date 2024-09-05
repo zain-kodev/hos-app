@@ -13,7 +13,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('products');
     Route::get('productDetails/{id}', [ProductsController::class, 'productDetails']);
 
-    Route::get('productEdit/{id}', [ProductsController::class, 'productEdit']);
+    Route::get('productEdit/{id}', [ProductsController::class, 'productEdit'])->name('productEdit');
     Route::post('PostProductEdit', [ProductsController::class, 'productEditPost'])->name('PostProductEdit');
 
     Route::post('uploadTempProductMainImage', [ProductsController::class,'uploadTempProductMainImage'])->name('uploadTempProductMainImage');
@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
+    Route::post('editTemp/{id}', [ProductsController::class, 'editTemp'])->name('editTemp');
 
 
 

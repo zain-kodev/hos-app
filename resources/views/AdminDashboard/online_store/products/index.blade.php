@@ -61,7 +61,7 @@
                                                 <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
                                                 <div class="dropdown-menu dropdown-menu-end border py-0">
                                                     <div class="bg-white py-2">
-                                                        <a class="dropdown-item text-info" href="#!" data-bs-toggle="modal" data-bs-target="#edit{{ $item->ProID }}" >تعديل</a>
+                                                        <a class="dropdown-item text-info" href="{{ route('productEdit',$item->ProID) }}">تعديل</a>
                                                         <a class="dropdown-item text-success" href="#!">تفاصيل</a>
                                                         <a class="dropdown-item text-danger" href="#!">حذف</a>
                                                     </div>
@@ -69,71 +69,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="edit{{ $item->ProID }}" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
 
-                                            <form action="{{ route('PostProductEdit') }}" method="post" id="my-awesome-dropzone">
-                                                @csrf
-                                                <input type="hidden" name="ProID" value="{{ $item->ProID }}">
-                                                <div class="modal-content position-relative">
-                                                    <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
-
-                                                        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body p-0">
-                                                        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
-                                                            <h4 class="mb-1" id="modalExampleDemoLabel">تعديل بيانات المنتج </h4>
-                                                        </div>
-                                                        <div class="p-4 pb-0">
-                                                        <div class="col-12 mb-3">
-                                                            <label class="form-label" for="event-name">اسم المنتج</label>
-                                                            <input class="form-control" name="name" type="text" placeholder="عنوان الفعالية" value="{{ $item->ProName }}"/>
-                                                        </div>
-
-                                                        <div class="col-12 mb-3">
-                                                            <label class="form-label" for="event-name">عبارة مختصرة</label>
-                                                            <input class="form-control" name="sentence" type="text"  value="{{ $item->sentence }}"/>
-                                                        </div>
-
-                                                        <div class="col-12 mb-3">
-                                                            <label class="form-label" for="event-name">التصنيف </label>
-                                                            <select name="category_id" class="form-select" >
-                                                                @foreach($cats as $category)
-                                                                    <option value="{{ $category->id }}"  @if($category->id == $item->category_id) selected="selected" @endif>{{ $category->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                            <div class="col-12 mb-3">
-                                                                <label class="form-label" for="event-name">سعر المنتج</label>
-                                                                <input class="form-control" name="price" type="number"  value="{{ $item->price }}"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="p-4 pb-0">
-                                                            <div class="mb-3 min-vh-50">
-                                                                <label class="col-form-label" for="message-text">وصف المنتج:</label>
-                                                                <textarea class="form-control tinymce d-none" rows="5" name="description_min" >{{ $item->description_min }}</textarea>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="p-4 pb-0">
-                                                            <div class="mb-3 min-vh-50">
-                                                                <label class="col-form-label" for="message-text">تفاصيل المنتج:</label>
-                                                                <textarea class="form-control tinymce d-none" rows="7" name="description_max" >{{ $item->description_max }}</textarea>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-
-                                                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إغلاق</button>
-
-                                                        <button class="btn btn-primary" type="submit">ارسال </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
