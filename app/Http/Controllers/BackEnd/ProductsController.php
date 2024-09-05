@@ -50,7 +50,7 @@ class ProductsController extends Controller
         //$db_ext = DB::connection('OnlineStoreDB');
         $product = DB::table('products')
             ->join('categories','products.category_id','=','categories.id')
-            ->select('products.*','categories.*', DB::raw('ic_products.name as ProName, ic_products.id as ProID'))
+            ->select('products.*','categories.*', DB::raw('ic_products.name as ProName, ic_products.id as ProID, ic_products.img as proImg'))
             ->where('products.id',$id)
             ->orderBy('products.created_at','asc')
             ->first();
