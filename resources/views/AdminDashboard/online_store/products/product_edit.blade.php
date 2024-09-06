@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xl-6 pe-lg-2 mb-3">
-                                    <img class="dz-preview-img" src="{{ asset($product->proImg) }}" />
+                                    <img class="dz-preview-img" src="{{ asset($product->proImg) }}" style="max-height: 350px !important;" />
                                 </div>
 
                             </div>
