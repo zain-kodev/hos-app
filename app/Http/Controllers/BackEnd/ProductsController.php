@@ -148,7 +148,7 @@ class ProductsController extends Controller
             $file = $request->file('file');
             $filename = uniqid().'_'.$tms.'.'.$file->getClientOriginalExtension();
             $file->storeAs('products_images/'.$usr_id.'/',$ran.'_'.$filename,'public_uploads');
-            $f = '/products_images/'.$usr_id.'/'.$ran.'_'.$filename;
+            $f = '/uploads/products_images/'.$usr_id.'/'.$ran.'_'.$filename;
             DB::table('products')->where('id',$id)->update([
                 'img' => $f,
                 'img_ball' => $f,
