@@ -21,6 +21,10 @@ class Order extends Model
         'latitude',
         'longitude',
         'delivery_address',
+        'delivery_address2',
+        'delivery_city',
+        'delivery_postal',
+        'delivery_building_no',
         'invoice_id',
         'paid',
 
@@ -38,6 +42,10 @@ class Order extends Model
         'latitude' => 'string',
         'longitude' => 'string',
         'delivery_address' => 'string',
+        'delivery_address2' => 'string',
+        'delivery_city' => 'string',
+        'delivery_postal' => 'string',
+        'delivery_building_no' => 'string',
     ];
     protected $attributes = [
         'products' => "[]",

@@ -9,9 +9,12 @@ use App\Jobs\CreateNewProject;
 use App\Mail\AcceptOrder;
 use App\Models\ActivateFile;
 use App\Models\BennarStatus;
+use App\Models\DiscountCode;
+use App\Models\Order;
 use App\Models\Orders;
 use App\Models\Packages;
 use App\Models\PackageServices;
+use App\Models\Product;
 use App\Models\ProjectServices;
 use App\Models\ProjectStages;
 use Carbon\Carbon;
@@ -51,19 +54,15 @@ class OrdersController extends Controller
 
     public function orderDetails(Request $request)
     {
-        $db_ext = DB::connection('OnlineStoreDB');
+        //$db_ext = DB::connection('OnlineStoreDB');
 
-        $order = $db_ext->table('ic_orders')
-            ->join('ic_users','ic_users.id','=','ic_orders.user_id')
-            ->select('ic_orders.*','ic_users.*', DB::raw('ic_orders.id as OID, ic_orders.phone as Ophone, ic_orders.created_at as oca'))
-            ->where('ic_orders.id',$request->id)
-            ->first();
-        $coupons = $db_ext->table('ic_discount_codes')->get();
-        $products = $db_ext->table('ic_products')->where('active',1)->get();
+        $order = Order::where('id',$request->id)->first();
+        $coupons = DiscountCode::all();
+        $products = Product::where('active',1)->get();
         //OnlineStore::Invoice($order,$request->id);
 
-       OnlineStore::generatePdf($order->OID);
-        return view('online_store.orders.details',compact('order','coupons','products'));
+       //OnlineStore::generatePdf($order->OID);
+        return view('AdminDashboard.online_store.orders.details',compact('order','coupons','products'));
     }
 
     public function orderEdit(Request $request)

@@ -97,35 +97,11 @@
                             <td>{{ number_format($Single->total) }} SAR</td>
                             <td>{{ $Single->city }} </td>
                             <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>خيارات
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        @if('successful' == $Single->state)
-                                            {{--                                        <li>--}}
-                                            {{--                                            <a class="" href="#" target="_blank">موافقة</a>--}}
-                                            {{--                                        </li>--}}
-                                            <li>
-                                                <a class="" href="{{url('orderDetails')}}/{{ $Single->OID }}" target="_blank">تفاصيل الطلب</a>
-                                            </li>
-                                        @endif
-
-                                        @if('complete' == $Single->state)
-                                            <li>
-                                                <a class="" href="{{url('orderDetails')}}/{{ $Single->OID }}" target="_blank">تفاصيل الطلب</a>
-                                            </li>
-                                            <li>
-                                                <a class="" href="{{ route('orderDetailsPrint',$Single->OID) }}" target="">عرض الفاتورة</a>
-                                            </li>
-                                            <li>
-                                                <a class="" href="{{ url('addOrderToProjects') }}/{{ $Single->OID }}" target="">إضافة للمشاريع</a>
-                                            </li>
-                                        @endif
-
-                                    </ul>
-                                </div>
+                                <a href="{{ url('orderDetails') }}/{{ $Single->OID }}" target="_blank">
+                                <span class="badge badge rounded-pill d-block p-2 badge-soft-primary">
+                                    تفاصيل
+                                    <span class="ms-1 fas fa-info" data-fa-transform="shrink-2"></span>
+                                </span> </a>
                             </td>
                         </tr>
                     @endforeach
