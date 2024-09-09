@@ -30,7 +30,8 @@
 
                 <div class="card-body position-relative">
                     <h6>العملاء<span class="badge badge-soft-warning rounded-pill ms-2">-0.23%</span></h6>
-                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" data-countup='{"endValue":{{ $users->count() }},"decimalPlaces":2,"suffix":"k"}'>{{ $users->count() }}</div><a class="fw-semi-bold fs--1 text-nowrap" href="#">المزيد<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" data-countup='{"endValue":{{ $users->count() }},"decimalPlaces":2,"suffix":"k"}'>{{ $users->count() }}</div>
+                    <a class="fw-semi-bold fs--1 text-nowrap" href="#">المزيد<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
                 </div>
             </div>
         </div>
@@ -39,7 +40,6 @@
                 <div class="bg-holder bg-card" style="background-image:url(../assets/img/illustrations/corner-2.png);">
                 </div>
                 <!--/.bg-holder-->
-
                 <div class="card-body position-relative">
                     <h6>الطلبات<span class="badge badge-soft-info rounded-pill ms-2">0.0%</span></h6>
                     <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info" data-countup='{"endValue":{{ $cou->count() }},"decimalPlaces":2,"suffix":"k"}'>{{ $cou->count() }}</div><a class="fw-semi-bold fs--1 text-nowrap" href="#">عرض الكل<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>

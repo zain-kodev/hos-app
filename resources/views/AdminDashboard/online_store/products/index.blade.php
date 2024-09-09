@@ -44,32 +44,22 @@
                             <tbody>
                                 @foreach($products as $item)
                                     <tr class="btn-reveal-trigger">
-                                        <td>{{$item->ProName}}</td>
+                                        <td><a href="{{ route('productEdit',$item->ProID) }}">{{$item->ProName}}</a> </td>
                                         <td>{{$item->name}}</td>
-                                        <td>{{ number_format($item->price) }} SAR</td>
-{{--                                        <td>--}}
-{{--                                            @if($item->active == 0)--}}
-{{--                                                <span class="badge badge rounded-pill d-block p-2 badge-soft-primary">في الانتظار<span class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span></span>--}}
-{{--                                            @else--}}
-{{--                                                <span class="badge badge rounded-pill d-block p-2 badge-soft-success"> تمت الموافقة<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>--}}
-
-{{--                                            @endif--}}
-{{--                                        </td>--}}
-
+                                        <td>{{ number_format($item->price) }} ر.س </td>
                                         <td class="text-end">
                                             <div class="dropdown font-sans-serif position-static">
-                                                <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
+                                                <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false">
+                                                <span class="fas fa-ellipsis-h fs--1"></span></button>
                                                 <div class="dropdown-menu dropdown-menu-end border py-0">
                                                     <div class="bg-white py-2">
                                                         <a class="dropdown-item text-info" href="{{ route('productEdit',$item->ProID) }}">تعديل</a>
-                                                        <a class="dropdown-item text-success" href="#!">تفاصيل</a>
                                                         <a class="dropdown-item text-danger" href="#!">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-
                                 @endforeach
                             </tbody>
                         </table>
