@@ -30,7 +30,7 @@
 
                 <div class="card-body position-relative">
                     <h6>العملاء<span class="badge badge-soft-warning rounded-pill ms-2">-0.23%</span></h6>
-                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" data-countup='{"endValue":58.386,"decimalPlaces":2,"suffix":"k"}'>0</div><a class="fw-semi-bold fs--1 text-nowrap" href="../app/e-commerce/customers.html">المزيد<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" data-countup='{"endValue":{{ $users->count() }},"decimalPlaces":2,"suffix":"k"}'>{{ $users->count() }}</div><a class="fw-semi-bold fs--1 text-nowrap" href="#">المزيد<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
 
                 <div class="card-body position-relative">
                     <h6>الطلبات<span class="badge badge-soft-info rounded-pill ms-2">0.0%</span></h6>
-                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info" data-countup='{"endValue":23.434,"decimalPlaces":2,"suffix":"k"}'>0</div><a class="fw-semi-bold fs--1 text-nowrap" href="../app/e-commerce/orders/order-list.html">عرض الكل<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info" data-countup='{"endValue":{{ $cou->count() }},"decimalPlaces":2,"suffix":"k"}'>{{ $cou->count() }}</div><a class="fw-semi-bold fs--1 text-nowrap" href="#">عرض الكل<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
 
                 <div class="card-body position-relative">
                     <h6>اجمالي الدخل<span class="badge badge-soft-success rounded-pill ms-2">9.54%</span></h6>
-                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif" data-countup='{"endValue":43594,"prefix":"$"}'>0</div><a class="fw-semi-bold fs--1 text-nowrap" href="../index.html">الاحصائيات<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                    <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif" data-countup='{"endValue":{{ $os }},"prefix":"$"}'>{{ $os }}</div><a class="fw-semi-bold fs--1 text-nowrap" href="#">الاحصائيات<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
                 </div>
             </div>
         </div>

@@ -65,7 +65,9 @@ Route::get('/AdminDashboard', function ($filter_type = null, $filter = null) {
    // dd($o);
     $users = DB::table('users')->get();
     $products = DB::table('products')->get();
-    return view('AdminDashboard.dashboard',compact('o','users','products','cou'));
+    $os = \App\Models\Order::sum('total');
+   // $products = DB::table('products')->get();
+    return view('AdminDashboard.dashboard',compact('o','users','products','cou','os'));
 })->middleware(['auth'])->name('AdminDashboard');
 
 Route::middleware('auth')->group(function () {
