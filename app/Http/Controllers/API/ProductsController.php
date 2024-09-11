@@ -85,7 +85,7 @@ class ProductsController extends BaseController
     }
 
     public function productReviews(Request $request){
-        $review = DB::table('product_review')->where('product_id',$request->product_id)->get();
+        $review = DB::table('product_review')->where('product_id',$request->product_id)->take(3)->get();
         return response()->json(
             [
                 'data' => $review,
