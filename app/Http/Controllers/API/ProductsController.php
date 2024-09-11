@@ -93,5 +93,20 @@ class ProductsController extends BaseController
             ], 200);
     }
 
+    public function saveProductReviews(Request $request){
+         DB::table('product_review')
+            ->insert([
+                'product_id' => $request->product_id,
+                'usr_name' => $request->usr_name,
+                'usr_rating' => $request->usr_rating,
+                'usr_comment' => $request->usr_comment,
+            ]);
+        return response()->json(
+            [
+                'data' => [],
+                'success' => true
+            ], 200);
+    }
+
 
 }
