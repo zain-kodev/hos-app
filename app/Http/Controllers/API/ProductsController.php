@@ -84,5 +84,14 @@ class ProductsController extends BaseController
             ], 200);
     }
 
+    public function productReviews(Request $request){
+        $review = DB::table('product_review')->where('product_id',$request->product_id)->get();
+        return response()->json(
+            [
+                'data' => $review,
+                'success' => true
+            ], 200);
+    }
+
 
 }
