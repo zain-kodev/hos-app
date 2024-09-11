@@ -27,6 +27,7 @@ class Order extends Model
         'delivery_building_no',
         'invoice_id',
         'paid',
+        'payment_method',
 
     ];
     protected $casts = [
@@ -39,6 +40,7 @@ class Order extends Model
         'total' => 'float',
         'invoice_id' => 'string',
         'paid' => 'string',
+        'payment_method' => 'string',
         'latitude' => 'string',
         'longitude' => 'string',
         'delivery_address' => 'string',
