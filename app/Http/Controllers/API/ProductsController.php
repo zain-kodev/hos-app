@@ -86,9 +86,16 @@ class ProductsController extends BaseController
 
     public function productReviews(Request $request){
         $review = DB::table('product_review')->where('product_id',$request->product_id)->take(3)->get();
+        $xfd = DB::table('product_review')->where('product_id',$request->product_id)->where('usr_name',$request->usr_name)->count();
+         if ($xfd>0){
+             $can = false;
+         }else{
+             $can = false;
+         }
         return response()->json(
             [
                 'data' => $review,
+                'canAdd' =>$can,
                 'success' => true
             ], 200);
     }
