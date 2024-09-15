@@ -86,6 +86,7 @@ class ProductsController extends BaseController
 
     public function productReviews(Request $request){
         $review = DB::table('product_review')->where('product_id',$request->product_id)->take(3)->get();
+        $allReview = DB::table('product_review')->where('product_id',$request->product_id)->get();
         $xfd = DB::table('product_review')->where('product_id',$request->product_id)->where('usr_name',$request->usr_name)->count();
          if ($xfd >0){
              $can = false;
@@ -95,6 +96,7 @@ class ProductsController extends BaseController
         return response()->json(
             [
                 'data' => $review,
+                'data2' => $allReview,
                 'canAdd' =>$can,
                 'success' => true
             ], 200);
