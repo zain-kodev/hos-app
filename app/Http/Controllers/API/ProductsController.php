@@ -102,6 +102,16 @@ class ProductsController extends BaseController
             ], 200);
     }
 
+    public function bannerPhoto(Request $request){
+        $info = DB::table('app_info')->first();
+
+        return response()->json(
+            [
+                'data' => $info->nanner_photo,
+                'success' => true
+            ], 200);
+    }
+
     public function saveProductReviews(Request $request){
          DB::table('product_review')
             ->insert([
