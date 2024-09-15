@@ -71,6 +71,7 @@ class ProductsController extends BaseController
                 'terms' => $info->terms_condition,
                 'privacy' => $info->privacy_policy,
                 'shipping' => $info->shiping_return,
+                'sudanese_scents' => $info->sudanese_scents,
             ], '');
 
     }

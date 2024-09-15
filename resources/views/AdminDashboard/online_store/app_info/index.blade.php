@@ -36,8 +36,8 @@
                             <tr class="btn-reveal-trigger">
                                 <th scope="col">من نحن</th>
                                 <th scope="col">الشروط والاحكام</th>
-                                <th scope="col">سياسة الامان والخصوصية</th>
-                                <th scope="col">سياسة الشحن والاسترجاع</th>
+{{--                                <th scope="col">سياسة الامان والخصوصية</th>--}}
+{{--                                <th scope="col">سياسة الشحن والاسترجاع</th>--}}
                                 <th class="text-end" scope="col">الاجراء</th>
                             </tr>
                             </thead>
@@ -46,8 +46,8 @@
                                 <tr class="btn-reveal-trigger">
                                     <td>{!! $item->about_us !!}</td>
                                     <td>{!! $item->terms_condition !!}</td>
-                                    <td>{!! $item->privacy_policy  !!} </td>
-                                    <td>{!! $item->shiping_return  !!} </td>
+{{--                                    <td>{!! $item->privacy_policy  !!} </td>--}}
+{{--                                    <td>{!! $item->shiping_return  !!} </td>--}}
 
                                     <td class="text-end">
                                         <div class="dropdown font-sans-serif position-static">
@@ -105,6 +105,14 @@
                                                         <div class="mb-3 min-vh-50">
                                                             <label class="col-form-label" for="message-text"> سياسة الشحن والارجاع:</label>
                                                             <textarea class="form-control tinymce d-none" rows="7" name="shiping_return" >{{ $item->shiping_return }}</textarea>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="p-4 pb-0">
+                                                        <div class="mb-3 min-vh-50">
+                                                            <label class="col-form-label" for="message-text"> عالم الروائح السودانية:</label>
+                                                            <textarea class="form-control tinymce d-none" rows="7" name="sudanese_scents" >{{ $item->sudanese_scents }}</textarea>
                                                         </div>
 
                                                     </div>

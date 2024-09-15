@@ -38,6 +38,7 @@ class AppInfoController extends Controller
                 'terms_condition' => $request->terms_condition,
                 'privacy_policy' => $request->privacy_policy,
                 'shiping_return' => $request->shiping_return,
+                'sudanese_scents' => $request->sudanese_scents,
             ]);
         session()->flash('Flash','تم تعديل البيانات');
         return redirect()->back();
