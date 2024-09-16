@@ -33,6 +33,7 @@ class OrderResource extends JsonResource
             'delivery_city' => $this->delivery_city,
             'delivery_postal' => $this->delivery_postal,
             'delivery_building_no' => $this->delivery_building_no,
+            'payment_method' => $this->payment_method,
             'invoice_id' => $this->invoice_id,
             'paid' => $this->paid,
             'created_at' => $this->created_at->format('F d, Y'),

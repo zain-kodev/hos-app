@@ -181,6 +181,11 @@ class CustomerController extends BaseController
             $order->latitude = $request->latitude;
             $order->longitude = $request->longitude;
             $order->delivery_address = $request->delivery_address;
+            $order->delivery_address2 = $request->delivery_address2;
+            $order->delivery_city = $request->delivery_city;
+            $order->delivery_postal = $request->delivery_postal;
+            $order->delivery_building_no = $request->delivery_building_no;
+            $order->payment_method = $request->payment_method;
 
             $order->products = $pros;
 
