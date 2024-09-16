@@ -61,6 +61,26 @@
     </div>
     <div class="card mb-3">
         <div class="card-header">
+            <h5 class="mb-0">الصورة الرئيسية في التطبيق</h5>
+        </div>
+        <div class="card-body bg-light">
+            <div class="dropzone dropzone-single p-0" data-dropzone="data-dropzone" data-options='{"url":"{{ route('mainBannerEdit') }}","maxFiles":1,"dictDefaultMessage":"Choose or Drop a file here"}'>
+                <div class="fallback">
+                    <input type="file" name="file" />
+                </div>
+                <div class="dz-preview dz-preview-single">
+                    <div class="dz-preview-cover dz-complete"><img class="dz-preview-img" src="{{ asset('assets/img/generic/image-file-2.png') }}" alt="..." data-dz-thumbnail="" /><a class="dz-remove text-danger" href="#!" data-dz-remove="data-dz-remove"><span class="fas fa-times"></span></a>
+                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                    </div>
+                </div>
+                <div class="dz-message" data-dz-message="data-dz-message">
+                    <div class="dz-message-text"><img class="me-2" src="{{ asset('assets/img/icons/cloud-upload.svg') }}" width="25" alt="" />اضغط هنا لتحميل الصورة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header">
             <div class="row flex-between-end">
                 <div class="col-auto col-lg align-self-center">
                     <h5 class="mb-0" data-anchor="data-anchor">قائمة الطلبات </h5>

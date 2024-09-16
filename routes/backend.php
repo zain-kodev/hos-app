@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::post('editTemp/{id}', [ProductsController::class, 'editTemp'])->name('editTemp');
+    Route::post('mainBannerEdit', [ProductsController::class, 'mainBannerEdit'])->name('mainBannerEdit');
 
 
 

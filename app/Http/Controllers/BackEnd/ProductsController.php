@@ -161,6 +161,35 @@ class ProductsController extends Controller
     }
 
 
+    public function mainBannerEdit(Request $request,$id)
+    {
+        //dd($id);
+        $this->validate($request, [
+            'file' => 'required|mimes:jpg,jpeg,JPG,JPEG,PNG,png|max:6048',
+        ],
+            $messsages = array(
+                'file.mimes'=>'خطأ في صيغة الملف',
+            )
+        );
+        if($request->hasFile('file')) {
+            $tms = date('Y-m-d');
+            $usr_id = auth()->user()->id;
+            $ran = mt_rand(10000, 99999);
+            $file = $request->file('file');
+            $filename = uniqid().'_'.$tms.'.'.$file->getClientOriginalExtension();
+            $file->storeAs('banner/'.$usr_id.'/',$ran.'_'.$filename,'public_uploads');
+            $f = '/public/uploads/banner/'.$usr_id.'/'.$ran.'_'.$filename;
+            DB::table('app_info')->where('id',1)->update([
+                'nanner_photo' => $f,
+            ]);
+            return '';
+        }
+
+        return '';
+
+    }
+
+
 }
 
 
