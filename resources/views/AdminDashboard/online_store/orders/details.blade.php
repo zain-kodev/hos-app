@@ -23,25 +23,48 @@ $discount = $order->discount;
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <h5 class="mb-3 fs-0">معلومات العميل</h5>
-                <h6 class="mb-2">{{ $order->user->name }}</h6>
-                <p class="mb-1 fs--1">{{ $order->address }}</p>
+                <h6 class="mb-2">الاسم: {{ $order->user->name }}</h6>
+                <p class="mb-1 fs--1">العنوان: {{ $order->address }}</p>
                 <p class="mb-0 fs--1"> <strong>البريد الالكتروني : </strong><a href="mailto:ricky@gmail.com">{{ $order->user->email }}</a></p>
                 <p class="mb-0 fs--1"> <strong>رقم الجوال : </strong><a href="tel:7897987987">{{ $order->phone }}</a></p>
             </div>
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <h5 class="mb-3 fs-0">معلومات الشحن</h5>
-                <h6 class="mb-2">{{ $order->user->name }}</h6>
-                <p class="mb-0 fs--1">{{ $order->address }}<br /></p>
+                <h6 class="mb-2">المدينة : {{ $order->delivery_city }}</h6>
+                <p class="mb-0 fs--1">الرمز البريدي : {{ $order->delivery_postal }}<br /></p>
+                <p class="mb-0 fs--1">رقم المبنى : {{ $order->delivery_building_no }}<br /></p>
+                <p class="mb-0 fs--1"> الشارع : {{ $order->delivery_address }}<br /></p>
                 <div class="text-500 fs--1">(تطبق الشروط والاحكام)</div>
             </div>
             <div class="col-lg-4">
                 <h5 class="mb-3 fs-0">طريقة الدفع</h5>
-                <div class="d-flex"><img class="me-3" src="../../../assets/img/icons/visa.png" width="40" height="30" alt="" />
+                <div class="d-flex">
+                    @if($order->payment_method == 'cash')
+                    <img class="me-3" src="../../../assets/img/icons/docs.png" width="40" height="30" alt="" />
                     <div class="flex-1">
-                        <h6 class="mb-0">البطاقة البنكية</h6>
-                        <p class="mb-0 fs--1">**** **** **** 9809</p>
+                        <h6 class="mb-0">الدفع نقدا</h6>
+                        <p class="mb-0 fs--1">عند التوصيل</p>
                     </div>
+                    @else
+                        <img class="me-3" src="../../../assets/img/icons/visa.png" width="40" height="30" alt="" />
+                        <div class="flex-1">
+                            <h6 class="mb-0">البطاقة البنكية</h6>
+                            <p class="mb-0 fs--1">**** **** **** 9809</p>
+                        </div>
+                    @endif
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-md">
+                <h5 class="mb-2 mb-md-0">لوكيشن التوصيل</h5>
+            </div>
+            <div class="col-auto">
+                <a href="https://www.google.com/maps?q={{ $order->latitude }},{{ $order->longitude }}" target="_blank"  class="btn btn-falcon-success btn-sm mb-2 mb-sm-0"><span class="fas fa-map me-1"></span>عرض على قوقل ماب</a>
             </div>
         </div>
     </div>
