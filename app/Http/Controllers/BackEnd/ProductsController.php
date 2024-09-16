@@ -177,8 +177,8 @@ class ProductsController extends Controller
             $ran = mt_rand(10000, 99999);
             $file = $request->file('file');
             $filename = uniqid().'_'.$tms.'.'.$file->getClientOriginalExtension();
-            $file->storeAs('banner/'.$usr_id.'/',$ran.'_'.$filename,'public_uploads');
-            $f = '/public/uploads/banner/'.$usr_id.'/'.$ran.'_'.$filename;
+            $file->storeAs('/',$ran.'_'.$filename,'public_uploads');
+            $f = '/public/uploads/'.$ran.'_'.$filename;
             DB::table('app_info')->where('id',1)->update([
                 'nanner_photo' => $f,
             ]);
