@@ -161,7 +161,7 @@ class ProductsController extends Controller
     }
 
 
-    public function mainBannerEdit(Request $request,$id)
+    public function mainBannerEdit(Request $request)
     {
         //dd($id);
         $this->validate($request, [
