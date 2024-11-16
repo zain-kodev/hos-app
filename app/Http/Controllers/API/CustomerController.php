@@ -221,7 +221,7 @@ class CustomerController extends BaseController
 
     public function customerOrders(Request $request){
         $user = User::find($request->uid);
-        $orders = OrderResource::collection($user->orders()->get());
+        $orders = OrderResource::collection($user->orders()->orderBy('id','desc')->get());
             return $this->sendResponse([
                 'orders'=>$orders
             ],'');
