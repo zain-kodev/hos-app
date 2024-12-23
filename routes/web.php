@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackEndAdminController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\DB;
@@ -46,6 +47,7 @@ Route::get('redirect', function () {
     }
 
 });
+
 Route::get('/AdminDashboard', function ($filter_type = null, $filter = null) {
 
     $o = DB::table('orders')
@@ -74,9 +76,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 
-
+Route::get('/privacyPolicy', [PageController::class, 'privacy_policy']);
 
 require __DIR__.'/auth.php';
