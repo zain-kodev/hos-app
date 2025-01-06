@@ -14,7 +14,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('productDetails/{id}', [ProductsController::class, 'productDetails']);
 
     Route::get('productEdit/{id}', [ProductsController::class, 'productEdit'])->name('productEdit');
+    Route::get('productDelete/{id}', [ProductsController::class, 'productDelete'])->name('productDelete');
     Route::post('PostProductEdit', [ProductsController::class, 'productEditPost'])->name('PostProductEdit');
+
+
+    Route::get('NewProduct', [ProductsController::class, 'new_product']);
+    Route::post('createNewProduct', [ProductsController::class, 'create_new_product'])->name('createNewProduct');
 
     Route::post('uploadTempProductMainImage', [ProductsController::class,'uploadTempProductMainImage'])->name('uploadTempProductMainImage');
 

@@ -27,7 +27,14 @@
                         <div class="col-auto col-lg align-self-center">
                             <h5 class="mb-0" data-anchor="data-anchor">قائمة المنتجات </h5>
                         </div>
-
+                        <div class="col-6 col-sm-auto ms-auto text-end ps-0">
+                            <div id="table-purchases-replace-element">
+                                <a class="btn btn-falcon-danger btn-sm" href="{{ url('NewProduct') }}">
+                                    <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
+                                    <span class="d-none d-sm-inline-block ms-1">اضافة منتج جديد</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body pt-0">
@@ -54,7 +61,7 @@
                                                 <div class="dropdown-menu dropdown-menu-end border py-0">
                                                     <div class="bg-white py-2">
                                                         <a class="dropdown-item text-info" href="{{ route('productEdit',$item->ProID) }}">تعديل</a>
-                                                        <a class="dropdown-item text-danger" href="#!">حذف</a>
+                                                        <a class="dropdown-item text-danger" href="{{ route('productDelete',$item->ProID) }}">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,4 +103,55 @@
             </div>
         </div>
     </div>
+
+
+{{--    <div class="modal fade" id="PStages" role="dialog">--}}
+{{--        <div class="modal-dialog modal-md">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <button type="button" class="close" data-dismiss="modal">&times;</button>--}}
+{{--                    <h4 class="modal-title">انشاء طلب جديد</h4>--}}
+{{--                </div>--}}
+{{--                <form method="POST" action="{{ route('createNewProduct') }}" class="form-horizontal" enctype="multipart/form-data">--}}
+{{--                <div class="modal-body">--}}
+
+{{--                        <div class="form-group">--}}
+{{--                            <label for="State" class="col-sm-2 control-label">العميل</label>--}}
+{{--                            <div class="col-sm-8">--}}
+{{--                                <select name="usr_id" class="form-control select2" style="width: 100%">--}}
+{{--                                    --}}{{--                                @foreach($users as $item)--}}
+{{--                                    --}}{{--                                    <option value="{{ $item->id }}">{{ $item->name }}</option>--}}
+{{--                                    --}}{{--                                @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="State" class="col-sm-2 control-label">المنتجات</label>--}}
+{{--                            <div class="col-sm-8">--}}
+{{--                                <select name="pro_id[]" class="form-control select2" multiple="multiple" data-placeholder="----اختر الباقات المطلوبة----" style="width: 100%">--}}
+{{--                                    --}}{{--                                @foreach($products as $item)--}}
+{{--                                    --}}{{--                                    <option value="{{ $item->id }}" >{{ $item->name }}</option>--}}
+{{--                                    --}}{{--                                @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="State" class="col-sm-2 control-label">ملاحظات العميل</label>--}}
+{{--                            <div class="col-sm-8">--}}
+{{--                                <textarea class="form-control" name="usr_note" rows="3"></textarea>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <button type="submit" class="btn btn-info">--}}
+{{--                        <i class="fa fa-plus"></i>--}}
+{{--                        حفظ--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection

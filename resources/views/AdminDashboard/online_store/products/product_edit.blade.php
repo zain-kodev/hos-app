@@ -56,11 +56,13 @@
                             </div>
 
                             <div class="col-12 mb-3">
-                                <label class="form-label" for="event-name">التصنيف </label>
-                                <select name="category_id" class="form-select" >
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}"  @if($category->id == $product->category_id) selected="selected" @endif>{{ $category->name }}</option>
-                                    @endforeach
+                                <div class="d-flex flex-between-center">
+                                    <label class="form-label" for="organizer"> التفعيل</label>
+                                </div>
+                                <select class="form-select js-choice" id="active" size="3" name="active" data-options='{"removeItemButton":true,"placeholder":true}' required="required">
+                                    <option value="">------ اختيار -----</option>
+                                    <option value="0">غير مفعل</option>
+                                    <option value="1">مفعل</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">

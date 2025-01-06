@@ -37,6 +37,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap" rel="stylesheet">
     <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet">
+
     <link href="{{ asset('assets/css/theme-rtl.min.css') }}" rel="stylesheet" id="style-rtl">
     <link href="{{ asset('style.css') }}" rel="stylesheet" id="style-rtl">
     <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
@@ -219,6 +221,9 @@
 <script src="{{ asset('vendors/progressbar/progressbar.min.js') }}"></script>
 <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
+
+<script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
+
 <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>

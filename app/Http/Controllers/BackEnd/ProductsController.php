@@ -45,6 +45,12 @@ class ProductsController extends Controller
 
     }
 
+    public function productDelete($id){
+        DB::table('products')->where('id',$id)->delete();
+        session()->flash('Flash','تم حذف المنتج');
+        return redirect()->back();
+    }
+
     public function productEdit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         //$db_ext = DB::connection('OnlineStoreDB');
@@ -71,7 +77,7 @@ class ProductsController extends Controller
             'description_max' => 'required',
             'sentence' => 'required|string',
             'price' => 'required|numeric',
-            //'slug' => 'required|string',
+            'active' => 'required',
             'category_id' => 'required|numeric',
             //'description_max' => 'required|string',
             //'paymentMethod' => 'required|string|max:255',
@@ -93,7 +99,7 @@ class ProductsController extends Controller
                 'sentence' => $request->sentence,
                 'price' => $request->price,
                 'category_id' => $request->category_id,
-                //'slug' => $request->slug,
+                'active' => $request->active,
             ]);
         session()->flash('Flash','تم تعديل البيانات');
         return redirect()->back();
@@ -186,6 +192,66 @@ class ProductsController extends Controller
         }
 
         return '';
+
+    }
+
+    public function new_product(){
+        return view('AdminDashboard.online_store.products.create');
+    }
+
+
+    public function create_new_product(Request $request){
+        //dd($request->all());
+        $validatedData = Validator::make($request->all(),[
+            'name' => 'required|string|max:255',
+            'description_min' => 'required',
+            'description_max' => 'required',
+            'sentence' => 'required|string',
+            'price' => 'required|numeric',
+            'slug' => 'required|string',
+            'category_id' => 'required|numeric',
+            'file' => 'required|mimes:jpg,jpeg,JPG,JPEG,PNG,png|max:6048',
+            //'description_max' => 'required|string',
+            //'paymentMethod' => 'required|string|max:255',
+        ]);
+
+        if ($validatedData->fails()) {
+            return redirect()->back()
+                ->withErrors($validatedData)
+                ->withInput();
+        }
+
+        if($request->hasFile('file')) {
+            $tms = date('Y-m-d');
+            $usr_id = auth()->user()->id;
+            $ran = mt_rand(10000, 99999);
+            $file = $request->file('file');
+            $filename = uniqid().'_'.$tms.'.'.$file->getClientOriginalExtension();
+            $file->storeAs('/',$ran.'_'.$filename,'public_uploads');
+            $f = '/public/uploads/'.$ran.'_'.$filename;
+            DB::table('app_info')->where('id',1)->update([
+                'nanner_photo' => $f,
+            ]);
+            DB::table('products')
+                ->insert([
+                    'name' => $request->name,
+                    'description_min' => $request->description_min,
+                    'description_max' => $request->description_max,
+                    'sentence' => $request->sentence,
+                    'price' => $request->price,
+                    'category_id' => $request->category_id,
+                    'stars' => 3,
+                    'img' => $f,
+                    'img_ball' => $f,
+                ]);
+            session()->flash('Flash','تم اضافة المنتج');
+            return redirect()->to('products');
+        }else{
+
+            return '';
+        }
+
+
 
     }
 
