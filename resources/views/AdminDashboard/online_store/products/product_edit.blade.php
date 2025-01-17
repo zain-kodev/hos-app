@@ -54,15 +54,24 @@
                                 <label class="form-label" for="event-name">عبارة مختصرة</label>
                                 <input class="form-control" name="sentence" type="text"  value="{{ $product->sentence }}"/>
                             </div>
-
+                            <div class="mb-3">
+                                <div class="d-flex flex-between-center">
+                                    <label class="form-label" for="organizer">نوع المنتج</label>
+                                </div>
+                                <select class="form-select js-choice" id="category_id" size="3" name="category_id" data-options='{"removeItemButton":true,"placeholder":true}' required="required">
+                                    <option value="">------ اختيار نوع المنتج -----</option>
+                                    @foreach(\App\Models\Category::all() as $package)
+                                        <option value="{{ $package->id }}">{{ $package->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-12 mb-3">
                                 <div class="d-flex flex-between-center">
                                     <label class="form-label" for="organizer"> التفعيل</label>
                                 </div>
                                 <select class="form-select js-choice" id="active" size="3" name="active" data-options='{"removeItemButton":true,"placeholder":true}' required="required">
-                                    <option value="">------ اختيار -----</option>
+                                    <option value="1"> مفعل</option>
                                     <option value="0">غير مفعل</option>
-                                    <option value="1">مفعل</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
