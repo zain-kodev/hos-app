@@ -63,7 +63,7 @@ class ProductsController extends BaseController
         $info = DB::table('app_info')->first();
 
             return $this->sendResponse([
-                'products' => ProductResource::collection($products),
+                'products' => ProductResource::collection($products)??[],
                 'newProducts' => ProductResource::collection($new_products),
                 'categories' => CategoryResource::collection($categories),
                 'tags' => TagResource::collection($tags),
