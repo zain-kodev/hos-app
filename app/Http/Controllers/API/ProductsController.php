@@ -57,15 +57,16 @@ class ProductsController extends BaseController
 //            })->paginate(10);
 
         } else {
-            $products = $data->whereHas('category', function ($query) use ($filter) {
-                $query->where('slug', 'best-sell');
-            })->with('variations_title.variations')->paginate(100);
+            $products = $data->with('variations_title.variations')->paginate(100);
+//            $products = $data->whereHas('category', function ($query) use ($filter) {
+//                $query->where('slug', 'best-sell');
+//            })->with('variations_title.variations')->paginate(100);
         }
 
         $info = DB::table('app_info')->first();
 
             return $this->sendResponse([
-                'products' => ProductResource::collection($products)??[],
+                'products' => ProductResource::collection($products),
                 'newProducts' => ProductResource::collection($new_products),
                 'categories' => CategoryResource::collection($categories),
                 'tags' => TagResource::collection($tags),
