@@ -57,7 +57,7 @@ class ProductsController extends BaseController
 //            })->paginate(10);
 
         } else {
-            $products = $data->with('variations_title.variations')->paginate(100);
+            $products = $data->where('category',23)->with('variations_title.variations')->paginate(100);
         }
 
         $info = DB::table('app_info')->first();
