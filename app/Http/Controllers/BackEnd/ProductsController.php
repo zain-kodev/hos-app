@@ -142,13 +142,13 @@ class ProductsController extends Controller
     public function editTemp(Request $request,$id)
     {
         //dd($id);
-        $this->validate($request, [
-            'file' => 'required|mimes:jpg,jpeg,JPG,JPEG,PNG,png|max:6048',
-        ],
-            $messsages = array(
-                'file.mimes'=>'خطأ في صيغة الملف',
-            )
-        );
+//        $this->validate($request, [
+//            'file' => 'required|mimes:jpg,jpeg,JPG,JPEG,PNG,png|max:6048',
+//        ],
+//            $messsages = array(
+//                'file.mimes'=>'خطأ في صيغة الملف',
+//            )
+//        );
         if($request->hasFile('file')) {
             $tms = date('Y-m-d');
             $usr_id = auth()->user()->id;
