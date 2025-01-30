@@ -78,6 +78,7 @@ class ProductsController extends Controller
             'sentence' => 'required|string',
             'price' => 'required|numeric',
             'active' => 'required',
+            'home_app' => 'required',
             'category_id' => 'required|numeric',
             //'description_max' => 'required|string',
             //'paymentMethod' => 'required|string|max:255',
@@ -99,6 +100,7 @@ class ProductsController extends Controller
                 'sentence' => $request->sentence,
                 'price' => $request->price,
                 'category_id' => $request->category_id,
+                'home_app' => $request->home_app,
                 'active' => $request->active,
             ]);
         session()->flash('Flash','تم تعديل البيانات');
