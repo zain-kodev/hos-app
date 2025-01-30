@@ -18,6 +18,7 @@ class Product extends Model
         'img',
         'banner',
         'price',
+        'home_app'
     ];
     protected $casts = [
         'name' => 'string',

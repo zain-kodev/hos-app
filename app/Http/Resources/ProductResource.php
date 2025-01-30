@@ -28,6 +28,7 @@ class ProductResource extends JsonResource
             'img_ball' => $this->img_ball,
             'stars' => $this->stars,
             'price' => $this->price,
+            'home_app' => $this->home_app,
             'images' => ImageResource::collection($this->whenLoaded('images')),
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'variations_title' => $this->variations_title,

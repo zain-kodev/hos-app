@@ -64,9 +64,11 @@ class ProductsController extends BaseController
         }
 
         $info = DB::table('app_info')->first();
-
+        $products_home = Product::where('active', 1)->where('','yes')->get()
+            ->paginate(1-0);
             return $this->sendResponse([
                 'products' => ProductResource::collection($products),
+                'products_home'=> ProductResource::collection($products_home),
                 'newProducts' => ProductResource::collection($new_products),
                 'categories' => CategoryResource::collection($categories),
                 'tags' => TagResource::collection($tags),

@@ -65,6 +65,17 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <div class="d-flex flex-between-center">
+                                    <label class="form-label" for="organizer"> الظهور في الصفحة الاولي للتطبيق</label>
+                                </div>
+                                <select class="form-select js-choice" id="category_id" size="3" name="category_id" data-options='{"removeItemButton":true,"placeholder":true}' required="required">
+                                    <option value="">------ اختيار -----</option>
+                                    <option value="0" @if($product->home_app == 0 ) selected @endif>غير ظاهر في الصفحة الرئيسية</option>
+                                    <option value="1" @if($product->home_app == 1 ) selected @endif> ظاهر في الصفحة الرئيسية</option>
+
+                                </select>
+                            </div>
                             <div class="col-12 mb-3">
                                 <div class="d-flex flex-between-center">
                                     <label class="form-label" for="organizer"> التفعيل</label>
